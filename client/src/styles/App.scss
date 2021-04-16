@@ -1,0 +1,226 @@
+@import '_config';
+
+* {
+  font-family: $fontHeads;
+}
+
+p {
+  font-family: $fontTxt;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+@media only screen and (min-width: 768px) {
+  .navbar-brand {
+    font-size: 2rem;
+  }
+}
+
+nav {
+  border-bottom: $border;
+}
+
+#banner {
+  width: 100%;
+  background-color: $sec;
+  color: $prim-L;
+  font-weight: 500;
+  position: relative;
+  text-align: center;
+  padding: 0.5rem 3rem;
+  i {
+    &:hover {
+      color: #ffffff;
+    }
+    position: absolute;
+    right: 0px;
+    top: 0.5rem;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+}
+
+.info {
+  padding: 2rem;
+
+  h1 {
+    font-family: $fontHeads;
+    font-size: 2rem;
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+  }
+  h2 {
+    font-family: $fontHeads;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  a {
+    color: $sec;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .info {
+    padding: 2rem 10rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+.card {
+  width: 20rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.19);
+  .halfBtn {
+    width: 48%;
+    margin: auto;
+  }
+  .fullBtn {
+    width: 100%;
+  }
+  .disabledBtn {
+    pointer-events: none;
+  }
+  &.cardVoted {
+    border: 2px solid $sec;
+  }
+}
+
+.modal-content {
+  width: 90%;
+  margin: 5%;
+}
+
+.description {
+  padding-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .card {
+    width: 18rem;
+  }
+}
+
+.progress {
+  border: 1px solid $prim-L;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  .progress-bar {
+    background-color: $sec;
+  }
+}
+
+.factFile {
+  text-align: center;
+
+  span {
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .status {
+    padding: 0.3rem;
+    margin: 0.5rem 0.5rem;
+    color: #ffffff;
+    border-radius: 1rem;
+  }
+  .Concern {
+    background-color: #009933;
+  }
+  .Near {
+    background-color: #339966;
+  }
+  .Vulnerable {
+    background-color: #ff9900;
+  }
+  .Endangered {
+    background-color: #ff3300;
+  }
+}
+
+#Footer {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  // #socialLinks {
+  //   border-top: $border;
+  //   padding: 0.5rem;
+  //   display: inline-block;
+  //   width: 100%;
+  //   color: #ffffff;
+  //   background-color: $prim;
+  // }
+  #copyright {
+    display: inline-block;
+    width: 100%;
+    color: white;
+    background-color: $prim-D;
+    padding: 1rem;
+  }
+  a {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    color: #ffffff;
+    &:hover {
+      color: $sec;
+    }
+  }
+}
+
+.infoPic {
+  width: 100%;
+}
+
+// Spinner -----------------------------
+
+.spinnercont {
+  margin-top: 30%;
+}
+
+.nb-spinner {
+  width: 75px;
+  height: 75px;
+  margin: auto;
+  margin-top: 10rem;
+  background: transparent;
+  border-top: 7px solid $sec;
+  border-right: 7px solid transparent;
+  border-radius: 50%;
+  -webkit-animation: 1s spin linear infinite;
+  animation: 1s spin linear infinite;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+// Spinner End -----------------------------

@@ -1,0 +1,30 @@
+{
+  "name": "big_cat_poll",
+  "version": "1.0.0",
+  "description": "An online app to find the worlds favourite big cat",
+  "main": "index.js",
+  "engines": {
+    "node": "8.11.4"
+  },
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "scss": "node-sass --watch client/src/scss/main -o client/src/App --recursive",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "Tim Iland",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3",
+    "npm": "^6.14.12"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

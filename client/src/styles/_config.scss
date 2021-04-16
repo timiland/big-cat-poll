@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Open+Sans&display=swap');
+
+$prim: #262626;
+$sec: #ffc107;
+$prim-L: lighten($prim, 10%);
+$prim-D: darken($prim, 10%);
+$border: 2px solid $sec;
+$fontHeads: 'Comfortaa', cursive;
+$fontTxt: 'Open Sans', sans-serif;
+
+// * {
+// }
