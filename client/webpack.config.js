@@ -13,31 +13,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.(png|jpe?g|gif)$/i,
         use: [
-          'file-loader',
           {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                progressive: true,
-              },
-              // optipng.enabled: false will disable optipng
-              optipng: {
-                enabled: false,
-              },
-              pngquant: {
-                quality: [0.65, 0.90],
-                speed: 4
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              // the webp option will enable WEBP
-              webp: {
-                quality: 75
-              }
-            }
+            loader: 'file-loader',
           },
         ],
       },
@@ -48,12 +27,12 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      // {
+      //   test: /\.css$/,
+      //   use: ['style-loader', 'css-loader']
+      // },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(scss)$/,
+        test: /\.(scss|css)$/,
         use: [{
           loader: 'style-loader', // inject CSS to page
         }, {
@@ -64,21 +43,21 @@ module.exports = {
           loader: 'sass-loader' // compiles Sass to CSS
         }]
       },
-      {
-        test: /\.(png|jpg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              esModule: false,
-              limit: 10 * 1024,
-              name: '[name].[ext]',
-              outputPath: 'images/',
-              publicPath: 'images/',
-            },
-          },
-        ],
-      }
+      // {
+      //   test: /\.(png|jpg)$/,
+      //   use: [
+      //     {
+      //       loader: 'url-loader',
+      //       options: {
+      //         esModule: false,
+      //         limit: 10 * 1024,
+      //         name: '[name].[ext]',
+      //         outputPath: 'images/',
+      //         publicPath: 'images/',
+      //       },
+      //     },
+      //   ],
+      // }
       // ,{
       //   test: /\.(svg)$/,
       //   use: [
