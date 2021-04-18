@@ -46,6 +46,7 @@
     "url-loader": "^4.1.0",
     "uuid": "^7.0.2",
     "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^4.4.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   }
