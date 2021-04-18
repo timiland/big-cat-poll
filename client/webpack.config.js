@@ -13,9 +13,33 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(jpg|png|gif|svg)$/,
-        loader: 'image-webpack-loader',
-        enforce: 'pre'
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.90],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              // the webp option will enable WEBP
+              webp: {
+                quality: 75
+              }
+            }
+          },
+        ],
       },
       {
         test: /\.(js|jsx)$/,
@@ -54,23 +78,23 @@ module.exports = {
             },
           },
         ],
-      },
-      {
-        test: /\.(svg)$/,
-        use: [
-          {
-            loader: 'svg-url-loader',
-            options: {
-              esModule: false,
-              limit: 10 * 1024,
-              name: '[name].[ext]',
-              outputPath: 'images/',
-              publicPath: 'images/',
-              noquotes: true,
-            },
-          },
-        ],
-      },
+      }
+      // ,{
+      //   test: /\.(svg)$/,
+      //   use: [
+      //     {
+      //       loader: 'svg-url-loader',
+      //       options: {
+      //         esModule: false,
+      //         limit: 10 * 1024,
+      //         name: '[name].[ext]',
+      //         outputPath: 'images/',
+      //         publicPath: 'images/',
+      //         noquotes: true,
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   },
   optimization: {
