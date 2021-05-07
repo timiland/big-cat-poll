@@ -84,14 +84,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-    }),
-    // new BundleAnalyzerPlugin({
-    //   analyzerMode: 'server',
-    //   generateStatsFile: true,
-    //   statsOptions: { source: false }
-    // }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ],
 };
