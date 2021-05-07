@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
@@ -27,10 +26,6 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
-      // {
-      //   test: /\.css$/,
-      //   use: ['style-loader', 'css-loader']
-      // },
       {
         test: /\.(scss|css)$/,
         use: [{
@@ -42,38 +37,7 @@ module.exports = {
         },{
           loader: 'sass-loader' // compiles Sass to CSS
         }]
-      },
-      // {
-      //   test: /\.(png|jpg)$/,
-      //   use: [
-      //     {
-      //       loader: 'url-loader',
-      //       options: {
-      //         esModule: false,
-      //         limit: 10 * 1024,
-      //         name: '[name].[ext]',
-      //         outputPath: 'images/',
-      //         publicPath: 'images/',
-      //       },
-      //     },
-      //   ],
-      // }
-      // ,{
-      //   test: /\.(svg)$/,
-      //   use: [
-      //     {
-      //       loader: 'svg-url-loader',
-      //       options: {
-      //         esModule: false,
-      //         limit: 10 * 1024,
-      //         name: '[name].[ext]',
-      //         outputPath: 'images/',
-      //         publicPath: 'images/',
-      //         noquotes: true,
-      //       },
-      //     },
-      //   ],
-      // },
+      }
     ],
   },
   optimization: {
