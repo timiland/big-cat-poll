@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "webpack serve --mode development --open --hot",
     "build": "webpack -p --mode production",
     "deploy": "set NODE_ENV=production&&webpack -p"
   },
@@ -46,8 +46,8 @@
     "svg-url-loader": "^7.1.1",
     "url-loader": "^4.1.0",
     "uuid": "^7.0.2",
-    "webpack": "^5.33.2",
-    "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.1",
+    "webpack-dev-server": "^3.11.2"
   }
 }
