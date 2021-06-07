@@ -17,7 +17,7 @@ class PollContainer extends Component {
 
   getCatData = () => {
     axios
-      .get('http://localhost:5000/api/cats')
+      .get('/api/cats')
       .then((response) => {
         const data = response.data;
         this.setState({ cats: data, loading: false });

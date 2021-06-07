@@ -6,7 +6,7 @@ class ModalInfo extends Component {
   submit = (event) => {
     event.persist();
     axios
-      .post(`http://localhost:5000/api/cats/${event.target.value}`)
+      .post(`/api/cats/${event.target.value}`)
       .then((response) => {
         console.log(event);
         console.log(response);
