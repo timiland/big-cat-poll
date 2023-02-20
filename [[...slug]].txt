@@ -1,0 +1,63 @@
+// import {
+//   StoryblokComponent,
+//   ISbStoryData,
+//   useStoryblokState,
+// } from '@storyblok/react';
+// import {
+//   GetStaticPaths,
+//   GetStaticProps,
+//   GetStaticPropsContext,
+//   NextPage,
+// } from 'next';
+// import { getPaths, getStories } from './services/storyblok';
+
+// interface Props {
+//   readonly story?: ISbStoryData & { path: string };
+// }
+
+// const Page: NextPage<Props> = ({ story: initialStory }: Props) => {
+//   const story = useStoryblokState(initialStory);
+
+//   if (!story.content) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return <StoryblokComponent blok={story.content} />;
+// };
+
+// export const getStaticProps: GetStaticProps = async ({
+//   params,
+//   preview,
+// }: GetStaticPropsContext) => {
+//   const { data } = await getStories({ params, preview: !!preview });
+
+//   if (!data?.stories?.length) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+
+//   return {
+//     props: {
+//       preview: !!preview,
+//       story: data?.stories[0],
+//     },
+//     revalidate: 3600,
+//   };
+// };
+
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const paths = await getPaths();
+//   console.log(JSON.stringify(paths));
+
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
+
+// Page.defaultProps = {
+//   story: undefined,
+// };
+
+// export default Page;
