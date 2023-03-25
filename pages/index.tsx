@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import {
-  // useStoryblokState,
+  useStoryblokState,
   getStoryblokApi,
   StoryblokComponent,
   ISbStoriesParams,
@@ -8,7 +8,8 @@ import {
 } from '@storyblok/react';
 
 export default function Home({ story }: { story: ISbStoryData }) {
-  // story = useStoryblokState(story);
+  // eslint-disable-next-line no-param-reassign
+  story = useStoryblokState(story);
 
   return (
     <div>

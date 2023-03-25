@@ -12,7 +12,12 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-urbanist)', ...fontFamily.sans],
       },
+      colors: {
+        black: {
+          DEFAULT: '#06191D',
+        },
+      },
     },
+    plugins: [],
   },
-  plugins: [],
 };

@@ -1,0 +1,52 @@
+import {
+  Typeset,
+  Story,
+  ArgsTable,
+  IconGallery,
+  IconItem,
+} from '@storybook/addon-docs/blocks';
+import Icon from '../components/atoms/Icon/Icon.tsx';
+
+<Meta title="Documentation / Iconography" />
+
+# Iconography
+
+The Icon component is built to have a single use component to make use any iconography you may need to use. You can find the Icon component in `components/shared/Icon`.
+
+It's a simple component that accepts a couple of props: **icon, color, className, size**
+
+The icons were uploaded to IcoMoon, so if any additional icons need adding make sure to follow the below steps
+
+- Go to the [IcoMoon site](https://icomoon.io/app/#/select)
+- Select **Import Icons** from the navigation bar at the top, and upload the relevant assets.
+- Once uploaded, select the new assets using the select option which can also be found in the navigation bar, and then click **Generate SVG & More** at the bottom.
+- A download will then begin which will be a IcoMoon folder containing the selection.json file.
+- Open the selection.json file and copy all references of the **icon** object within the icons array (there will be one for each SVG).
+  <br />
+  <br />
+
+## Rules
+
+We should always refer to the Icon component whenever we make use of iconography across the site. There should be no hardcoded icons, if more icons need adding, we need to add them into IcoMoon and add update the selection.json file (see above on how we do this).
+
+## Example
+
+`<Icon name="verified_user_icon" size="1rem" colorClassName="text-blue" className="icon" />`
+
+- `name`: name of icon define in `selection.json`
+- `size`: width and height of icon, can be a number or string e.g '1rem'
+- `colorClassName`: can pass tailwind color classes to the svg class e.g 'text- blue'
+- `color`: sets the svg color directly`
+- `className`: any class can be passed to icon
+
+<br />
+
+<h2 style={{ marginBottom: '20px' }}>Default Icons</h2>
+<IconGallery>
+  <IconItem name="play_circle_filled">
+    <Icon name="play_circle_filled" />
+  </IconItem>
+</IconGallery>
+
+<h2 style={{ marginBottom: '20px' }}>Tech Icons</h2>
+<IconGallery></IconGallery>
