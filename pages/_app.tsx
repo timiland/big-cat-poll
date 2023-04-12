@@ -1,8 +1,9 @@
-import '../styles/globals.css';
+import '../styles/globals.scss';
 import { storyblokInit, apiPlugin } from '@storyblok/react';
 import { Urbanist } from '@next/font/google';
 import NavBar from '../components/organisms/Navbar/NavBar';
-import Page from '../components/Templates/Page';
+import Page from '../components/templates/Page';
+import SideImageSection from '../components/organisms/SideImageSection/SideImageSection';
 
 const urbanist = Urbanist({
   subsets: ['latin'],
@@ -12,6 +13,7 @@ const urbanist = Urbanist({
 const components = {
   navBar: NavBar,
   page: Page,
+  sideImageSection: SideImageSection,
 };
 
 storyblokInit({
@@ -23,7 +25,7 @@ storyblokInit({
 // get correct typing on this
 function MyApp({ Component, pageProps }: any) {
   return (
-    <div className={`${urbanist.variable} font-sans`}>
+    <div className={`${urbanist.variable} font-urbanist`}>
       <Component {...pageProps} />
     </div>
   );

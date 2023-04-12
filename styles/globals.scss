@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+img {
+  /* image-rendering: auto; */
+  /* image-rendering: crisp-edges; */
+  image-rendering: pixelated;
+}
+
+.component-padding {
+  padding-bottom: 200px;
+}
+
+// GENERAL ----------------------------------------
+
+body * {
+  @apply font-light antialiased;
+}
+
+// TYPOGRAPHY ----------------------------------------
+
+
+h1{
+  @apply text-3xl font-bold;
+
+  @screen lg {
+    @apply text-6xl;
+  }
+
+  @screen 2xl {
+    @apply text-7xl;
+  }
+}
+
+h2 {
+  @apply text-[30px];
+
+  @screen lg {
+    @apply text-6xl;
+  }
+}
+
+
+h3 {
+  @apply text-2xl;
+
+  @screen lg {
+    @apply text-5xl;
+  }
+}
+
+h4 {
+  @apply text-2xl;
+
+  @screen lg {
+    @apply text-4xl;
+  }
+}
+
+// RICH TEXT STYLES ----------------------------------
+

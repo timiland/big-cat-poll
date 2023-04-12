@@ -8,9 +8,27 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    container: {
+      center: true,
+      screens: {
+        sm: '376px',
+        md: '768px',
+        lg: '500px',
+        xl: '700px',
+        '2xl': '700px',
+      },
+      // padding: {
+      //   DEFAULT: '20px',
+      //   sm: '20px',
+      //   md: '60px',
+      //   lg: '100px',
+      //   xl: '100px',
+      //   '2xl': '140px',
+      // },
+    },
     extend: {
       fontFamily: {
-        sans: ['var(--font-urbanist)', ...fontFamily.sans],
+        urbanist: ['var(--font-urbanist)', ...fontFamily.sans],
       },
       colors: {
         black: {

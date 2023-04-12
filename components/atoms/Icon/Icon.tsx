@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import IcoMoon from 'react-icomoon';
-import { IIcon } from '../../../models/IIcon';
+import { IIcon } from '@models/IIcon';
 import iconSet from './selection.json';
 
 const Icon: FC<IIcon> = ({
