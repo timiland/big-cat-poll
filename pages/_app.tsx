@@ -1,6 +1,7 @@
 import '../styles/globals.scss';
 import { storyblokInit, apiPlugin } from '@storyblok/react';
 import { Urbanist } from '@next/font/google';
+import CharacterAnimationHero from '@organisms/CharacterAnimationHero/CharacterAnimationHero';
 import NavBar from '../components/organisms/Navbar/NavBar';
 import Page from '../components/templates/Page';
 import SideImageSection from '../components/organisms/SideImageSection/SideImageSection';
@@ -14,6 +15,7 @@ const components = {
   navBar: NavBar,
   page: Page,
   sideImageSection: SideImageSection,
+  characterAnimationHero: CharacterAnimationHero,
 };
 
 storyblokInit({

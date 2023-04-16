@@ -14,8 +14,8 @@ module.exports = {
         sm: '376px',
         md: '768px',
         lg: '500px',
-        xl: '700px',
-        '2xl': '700px',
+        xl: '800px',
+        '2xl': '1110px',
       },
       // padding: {
       //   DEFAULT: '20px',

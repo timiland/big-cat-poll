@@ -20,7 +20,7 @@ const SideImageSection = ({ blok }: { blok: ISideImageSection }) => {
 
   const theme = useThemeStore((state) => state.theme);
 
-  console.log(theme);
+  // console.log(theme);
 
   useEffect(() => {
     if (inView) {
@@ -40,7 +40,7 @@ const SideImageSection = ({ blok }: { blok: ISideImageSection }) => {
 
   return (
     <section className="relative w-full" {...storyblokEditable(blok)}>
-      <div className="container text-center flex flex-col gap-14">
+      <div className="container h-screen text-center flex flex-col items-center justify-center gap-14">
         <h1>{title}</h1>
         <div ref={ref}>{render(text)}</div>
       </div>
