@@ -5,7 +5,7 @@ Command: npx gltfjsx@6.1.4 public/Character.glb --types
 */
 
 import * as THREE from 'three';
-import React, { useRef, useEffect, useState, useMemo } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { GLTF, SkeletonUtils } from 'three-stdlib';
 import { useGraph } from '@react-three/fiber';
@@ -38,9 +38,9 @@ const Character = ({ model, actionIndex }: props) => {
   // Change animation when the index changes
   useEffect(() => {
     // Reset and fade in animation after an index has been changed
-    actions[names[actionIndex]].reset().fadeIn(0.5).play();
+    actions[`${names[actionIndex]}`].reset().fadeIn(0.5).play();
     // In the clean-up phase, fade it out
-    return () => actions[names[actionIndex]].fadeOut(0.5);
+    return () => actions[`${names[actionIndex]}`].fadeOut(0.5);
   }, [actions, actionIndex, names]);
 
   return (
