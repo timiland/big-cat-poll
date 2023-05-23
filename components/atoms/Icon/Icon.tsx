@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FC } from 'react';
 import IcoMoon from 'react-icomoon';
 import { IIcon } from '@models/IIcon';
@@ -11,7 +11,7 @@ const Icon: FC<IIcon> = ({
   name = 'check',
   size = '1.5rem',
 }: IIcon) => {
-  const classes = classNames(className, colorClassName, name);
+  const classes = clsx(className, colorClassName, name);
 
   return (
     <IcoMoon

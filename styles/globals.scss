@@ -8,10 +8,6 @@ img {
   image-rendering: pixelated;
 }
 
-.component-padding {
-  padding-bottom: 200px;
-}
-
 // GENERAL ----------------------------------------
 
 body * {
@@ -20,6 +16,9 @@ body * {
 
 // TYPOGRAPHY ----------------------------------------
 
+section, nav {
+  padding-bottom: 200px;
+}
 
 h1{
   @apply text-3xl font-bold;
@@ -63,5 +62,5 @@ h4 {
 // STANDARD 12 COL GRID
 
 .grid-container {
-  @apply container grid grid-cols-2 xl:grid-cols-12 xl:gap-[30px] gap-6
+  @apply container grid lg:first-letter:grid-cols-2 xl:grid-cols-12 xl:gap-8 gap-6
 }

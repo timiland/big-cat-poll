@@ -11,20 +11,19 @@ module.exports = {
     container: {
       center: true,
       screens: {
-        sm: '376px',
         md: '768px',
-        lg: '500px',
-        xl: '800px',
-        '2xl': '1110px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
       },
-      // padding: {
-      //   DEFAULT: '20px',
-      //   sm: '20px',
-      //   md: '60px',
-      //   lg: '100px',
-      //   xl: '100px',
-      //   '2xl': '140px',
-      // },
+      padding: {
+        DEFAULT: '20px',
+        sm: '20px',
+        md: '60px',
+        lg: '100px',
+        xl: '0px',
+        '2xl': '0px',
+      },
     },
     extend: {
       fontFamily: {
@@ -33,6 +32,12 @@ module.exports = {
       colors: {
         black: {
           DEFAULT: '#06191D',
+        },
+        red: {
+          fire: '#FFF',
+        },
+        gnoppu: {
+          DEFAULT: '#FFF',
         },
       },
     },

@@ -4,6 +4,7 @@ module.exports = {
   rules: {
     'no-underscore-dangle': 'off',
     'react/button-has-type': 'off',
+    'react/require-default-props': 'off',
     'react/no-danger': 'off',
     'react/function-component-definition': 'off',
     'react/react-in-jsx-scope': 'off',

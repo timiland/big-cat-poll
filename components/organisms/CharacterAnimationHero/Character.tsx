@@ -43,6 +43,8 @@ const Character = ({ model, actionIndex }: props) => {
     return () => actions[`${names[actionIndex]}`].fadeOut(0.5);
   }, [actions, actionIndex, names]);
 
+  useGLTF.preload(model);
+
   return (
     <group ref={group} dispose={null}>
       <group name="Scene">
@@ -66,5 +68,3 @@ const Character = ({ model, actionIndex }: props) => {
 };
 
 export default Character;
-
-useGLTF.preload('/Character.glb');

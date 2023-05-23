@@ -2,6 +2,8 @@ import '../styles/globals.scss';
 import { storyblokInit, apiPlugin } from '@storyblok/react';
 import { Urbanist } from '@next/font/google';
 import CharacterAnimationHero from '@organisms/CharacterAnimationHero/CharacterAnimationHero';
+import BulletSection from '@organisms/BulletSection/BulletSection';
+import CtaPopOutSection from '@organisms/CtaPopOutSection/CtaPopOutSection';
 import NavBar from '../components/organisms/Navbar/NavBar';
 import Page from '../components/templates/Page';
 import SideImageSection from '../components/organisms/SideImageSection/SideImageSection';
@@ -14,8 +16,10 @@ const urbanist = Urbanist({
 const components = {
   navBar: NavBar,
   page: Page,
+  bulletSection: BulletSection,
   sideImageSection: SideImageSection,
   characterAnimationHero: CharacterAnimationHero,
+  ctaPopOutSection: CtaPopOutSection,
 };
 
 storyblokInit({

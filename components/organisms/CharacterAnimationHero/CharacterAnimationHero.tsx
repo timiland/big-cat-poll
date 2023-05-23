@@ -7,7 +7,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import ICharacterModel from '@models/ICharacterModel';
 import * as THREE from 'three';
 import { useGLTF, useAnimations } from '@react-three/drei';
-import { GLTF } from 'three-stdlib';
+import { GLTF, TransformControlsPlane } from 'three-stdlib';
+import addCorsPrefix from 'helpers/addCorsPrefix';
 import CharacterTag from './CharacterTag';
 import Character from './Character';
 import ActionTag from './ActionTag';
@@ -37,7 +38,9 @@ const CharacterAnimationHero = ({
 
   const { name, tagline, model, thumbnail } = characterModels[characterIndex];
 
-  const { animations } = useGLTF(model.filename) as GLTFResult;
+  const modelUrl = addCorsPrefix(model.filename);
+
+  const { animations } = useGLTF(modelUrl) as GLTFResult;
 
   const actions = animations.map((action, index) => ({
     key: index,
@@ -46,7 +49,7 @@ const CharacterAnimationHero = ({
 
   return (
     <section
-      className="relative w-full pb-[300px]"
+      className="relative w-full component-padding"
       {...storyblokEditable(blok)}
     >
       <div className="container grid-container">
@@ -64,7 +67,7 @@ const CharacterAnimationHero = ({
             />
             <ambientLight />
             <Suspense fallback={null}>
-              <Character model={model.filename} actionIndex={actionIndex} />
+              <Character model={modelUrl} actionIndex={actionIndex} />
             </Suspense>
           </Canvas>
         </div>

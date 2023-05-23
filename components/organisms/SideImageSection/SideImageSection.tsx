@@ -1,24 +1,34 @@
 import { useEffect } from 'react';
-import { SbBlokData, storyblokEditable } from '@storyblok/react';
+import {
+  ISbRichtext,
+  renderRichText,
+  SbBlokData,
+  storyblokEditable,
+} from '@storyblok/react';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Image from 'next/image';
-import { render } from 'storyblok-rich-text-react-renderer';
+
 import IAsset from '@models/IAsset';
-import useThemeStore from '@stores/themeStore';
+import DirectionEnum from '@models/enums/DirectionEnum';
+import { SbImage } from '@atoms/SbImage/SbImage';
+import clsx from 'clsx';
+import BackgroundLogo from '@atoms/BackgroundLogo/BackgroundLogo';
+import AnimateInOnScroll from '@atoms/AnimateInOnScroll/AnimateInOnScroll';
+// import useThemeStore from '@stores/themeStore';
 
 export interface ISideImageSection extends SbBlokData {
   readonly title: string;
-  readonly text: string;
-  readonly images: IAsset[];
+  readonly text: ISbRichtext;
+  readonly image: IAsset;
+  readonly imagePosition: DirectionEnum;
 }
 
 const SideImageSection = ({ blok }: { blok: ISideImageSection }) => {
-  const { title, text, images } = blok;
+  const { title, text, image, imagePosition } = blok;
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 1 });
 
-  const theme = useThemeStore((state) => state.theme);
+  // const theme = useThemeStore((state) => state.theme);
 
   // console.log(theme);
 
@@ -28,39 +38,48 @@ const SideImageSection = ({ blok }: { blok: ISideImageSection }) => {
     }
   }, [controls, inView]);
 
-  const leftImageVariants = {
-    visible: { opacity: 1, x: 0, transition: { duration: 1.5 } },
-    hidden: { opacity: 0, x: -200 },
-  };
-
-  const rightImageVariants = {
-    visible: { opacity: 1, x: 0, transition: { duration: 2 } },
-    hidden: { opacity: 0, x: 200 },
+  const imageVariants = {
+    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+    hidden: { opacity: 0, y: 50 },
   };
 
   return (
-    <section className="relative w-full" {...storyblokEditable(blok)}>
-      <div className="container h-screen text-center flex flex-col items-center justify-center gap-14">
-        <h1>{title}</h1>
-        <div ref={ref}>{render(text)}</div>
-      </div>
-      <motion.div
-        className="absolute z-10 -top-[150px] -left-[200px] w-[750px] h-[750px]"
-        animate={controls}
-        initial="hidden"
-        variants={leftImageVariants}
+    <BackgroundLogo>
+      <section
+        className="relative w-full grid-container component-padding"
+        {...storyblokEditable(blok)}
       >
-        <Image alt={images[0].alt} src={images[0].filename} layout="fill" />
-      </motion.div>
-      <motion.div
-        className="xl:absolute z-10 -top-[150px] -right-[200px] w-[750px] h-[750px]"
-        animate={controls}
-        initial="hidden"
-        variants={rightImageVariants}
-      >
-        <Image alt={images[1].alt} src={images[1].filename} layout="fill" />
-      </motion.div>
-    </section>
+        <div
+          className={clsx(
+            imagePosition === DirectionEnum.Left && 'order-last',
+            'lg:col-span-4 xl:col-start-2 text-center flex flex-col items-center justify-center gap-14'
+          )}
+        >
+          <h1 className="whitespace-pre-line">{title}</h1>
+          <div
+            ref={ref}
+            dangerouslySetInnerHTML={{ __html: renderRichText(text) }}
+          />
+        </div>
+        <AnimateInOnScroll
+          direction={DirectionEnum.Left}
+          className={clsx(
+            imagePosition === DirectionEnum.Right && 'xl:col-start-7',
+            'lg:col-span-4 xl:col-span-6 relative order-0 px-8 md:px-0'
+          )}
+        >
+          <SbImage
+            alt={image.alt}
+            src={image.filename}
+            ratio={1}
+            // sizes={`
+            // (max-width: 710px) 120px,
+            // (max-width: 991px) 193px,
+            //   278px`}
+          />
+        </AnimateInOnScroll>
+      </section>
+    </BackgroundLogo>
   );
 };
 

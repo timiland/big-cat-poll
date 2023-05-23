@@ -20,11 +20,11 @@ module.exports = (plop) => {
         path: 'components/{{lowerCase type}}/{{pascalCase name}}/{{pascalCase name}}.tsx',
         templateFile: 'plop-templates/component.tsx.hbs',
       },
-      {
-        type: 'add',
-        path: 'components/{{lowerCase type}}/{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
-        templateFile: 'plop-templates/stories.tsx.hbs',
-      },
+      // {
+      //   type: 'add',
+      //   path: 'components/{{lowerCase type}}/{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
+      //   templateFile: 'plop-templates/stories.tsx.hbs',
+      // },
       // {
       //   type: 'add',
       //   path: 'components/{{lowerCase type}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx',
