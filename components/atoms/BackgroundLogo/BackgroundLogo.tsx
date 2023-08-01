@@ -1,18 +1,27 @@
-import { ReactNode } from 'react';
+import ColouredLogo, { IColouredLogo } from '@atoms/ColouredLogo/ColouredLogo';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-export interface IBackgroundLogo {
-  children: ReactNode;
-}
+const BackgroundLogo = ({ colour, outlineColour }: IColouredLogo) => {
+  const { scrollYProgress } = useScroll();
 
-const BackgroundLogo = ({ children }: IBackgroundLogo) => (
-  <div className="relative w-full">
-    <img
-      className="absolute scale-[120%] -translate-x-[100px] opacity-[5%]"
-      alt="logo background"
-      src="/timothy-iland-logo-black.svg"
-    />
-    {children}
-  </div>
-);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.8]);
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0.1, 0.06]);
+
+  const translateY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+
+  return (
+    <motion.div
+      className="fixed z-0 w-full"
+      style={{ scale, opacity, translateY }}
+    >
+      <ColouredLogo
+        className="scale-[130%] -translate-x-[100px] translate-y-[100px]"
+        colour={colour}
+        outlineColour={outlineColour}
+      />
+    </motion.div>
+  );
+};
 
 export default BackgroundLogo;

@@ -1,53 +1,89 @@
+import Icon from '@atoms/Icon/Icon';
 import ButtonStyleEnum from '@models/enums/ButtonStyleEnum';
+import ColoursEnum from '@models/enums/ColoursEnum';
+import IconSizeEnum from '@models/enums/IconSizeEnum';
 import clsx from 'clsx';
 import { ButtonHTMLAttributes } from 'react';
 import ILink from '../../../models/ILink';
 
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
+  readonly secondary?: boolean;
+  readonly download?: boolean;
   readonly style_?: ButtonStyleEnum;
   readonly link?: ILink;
-  readonly secondary?: boolean;
+  readonly iconName?: string;
+  readonly iconFlip?: boolean;
+  readonly mainColour?: ColoursEnum;
   readonly linkCallback?: () => void;
 }
 
 const Button = ({
   style_ = ButtonStyleEnum.Default,
   children,
-  link,
+  download,
   secondary,
+  link,
+  iconName = '',
+  iconFlip = false,
   linkCallback,
   ...buttonProps
 }: IButton) => {
   const { className, disabled } = buttonProps;
+
+  const textStyles = clsx({
+    'text-white hover:text-yellow focus:text-yellow active:text-yellow':
+      !disabled &&
+      !secondary &&
+      (style_ === ButtonStyleEnum.Basic || ButtonStyleEnum.Outline),
+
+    'text-black':
+      !disabled &&
+      secondary &&
+      (style_ === ButtonStyleEnum.Basic || ButtonStyleEnum.Outline),
+
+    'text-gray-200':
+      disabled && (style_ === ButtonStyleEnum.Basic || ButtonStyleEnum.Outline),
+  });
+
+  const boxStyles = clsx({
+    'bg-black border-2 border-yellow':
+      !disabled && !secondary && style_ === ButtonStyleEnum.Outline,
+
+    'bg-white border-2 border-black hover:bg-yellow focus:bg-yellow active:bg-yellow':
+      !disabled && secondary && style_ === ButtonStyleEnum.Outline,
+
+    'bg-black-300': disabled && style_ === ButtonStyleEnum.Outline,
+
+    'rounded-full': style_ === ButtonStyleEnum.Outline,
+  });
+
+  const iconClasses = clsx(
+    iconFlip && '-scale-y-100',
+    'ml-2 -translate-y-[2px]'
+  );
+
   const buttonClasses = clsx(
-    {
-      'bg-black py-3 px-5 text-white hover:bg-yellow-100 focus:bg-yellow-500 active:bg-yellow-500 rounded-full':
-        !disabled && !secondary && style_ === ButtonStyleEnum.Default,
-      //
-      'text-black':
-        !disabled && secondary && style_ === ButtonStyleEnum.Default,
-      //
-      'bg-grey text-grey-500 py-1 px-4': disabled,
-      //
-      'bg-white text-black py-1 px-4 rounded-md':
-        style_ === ButtonStyleEnum.Square,
-    },
-    'inline-block min-h-min select-none uppercase',
+    textStyles,
+    boxStyles,
+    'inline-block py-2 px-4 min-h-min select-none cta transition-all ease-in',
     className
   );
 
-  return link?.url && (link?.title || children) && !disabled ? (
+  return link?.url?.url && (link?.title || children) && !disabled ? (
     <a
       className={buttonClasses}
-      href={link.url}
+      href={link.url.url}
       target={link.target}
       onClick={() => linkCallback?.()}
+      download={download}
     >
       {children || link.title}
+      <Icon name={iconName} size={IconSizeEnum.lg} className={iconClasses} />
     </a>
   ) : (
     <button {...buttonProps} className={buttonClasses} disabled={disabled}>
       {children}
+      <Icon name={iconName} size={IconSizeEnum.lg} className={iconClasses} />
     </button>
   );
 };

@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 export interface IAnimateInOnScroll {
-  className: string;
+  className?: string;
   children: ReactNode;
   direction: DirectionEnum;
 }

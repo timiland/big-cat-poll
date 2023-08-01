@@ -1,4 +1,5 @@
 import { getStoryblokApi, ISbResult, ISbStoryParams } from '@storyblok/react';
+
 import { ParsedUrlQuery } from 'querystring';
 
 export const getStories = async ({
@@ -8,9 +9,9 @@ export const getStories = async ({
   params: ParsedUrlQuery | undefined;
   preview: boolean;
 }): Promise<ISbResult> => {
-  const relations: string[] = [];
+  const relations: string[] = ['projectFeature.project'];
 
-  const slug = params?.slug ? (params.slug as string[]).join('/') : '';
+  const slug = params?.slug ? (params.slug as string[]).join('/') : 'home';
 
   const sbParams: ISbStoryParams = {
     version: 'published',
@@ -39,18 +40,18 @@ export const getPaths = async (): Promise<{ params: { slug: string[] } }[]> => {
 
   const paths: { params: { slug: string[] } }[] = [];
 
-  Object.keys(data.links).forEach((linkKey: string) => {
-    // Dan does this to remove certain pages
-    //   if (
-    //     data.links[linkKey].is_folder ||
-    //     data.links[linkKey].slug.startsWith('core/') ||
-    //     data.links[linkKey].slug.startsWith('domain/')
-    //   ) {
-    //     return;
-    //   }
+  Object.keys(data.links).forEach((linkKey: any) => {
+    if (
+      // data.links[linkKey].is_folder ||
+      data.links[linkKey].slug.startsWith('globalcomponents/') ||
+      data.links[linkKey].slug.startsWith('site-config')
+    ) {
+      return;
+    }
 
     const { path } = data.links[linkKey];
-    const splitSlug = path.split('/');
+
+    const splitSlug = path === '/' ? [] : path?.split('/');
 
     paths.push({ params: { slug: splitSlug } });
   });

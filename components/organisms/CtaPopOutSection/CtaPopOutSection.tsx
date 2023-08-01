@@ -1,44 +1,66 @@
-import AnimateInOnScroll from '@atoms/AnimateInOnScroll/AnimateInOnScroll';
 import Button from '@atoms/Button/Button';
 import { SbImage } from '@atoms/SbImage/SbImage';
 import ButtonStyleEnum from '@models/enums/ButtonStyleEnum';
-import DirectionEnum from '@models/enums/DirectionEnum';
 import IAsset from '@models/IAsset';
 import ILink from '@models/ILink';
 import { SbBlokData, storyblokEditable } from '@storyblok/react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 export interface ICtaPopOutSection extends SbBlokData {
   readonly title: string;
   readonly text: string;
   readonly image: IAsset;
-  readonly link: ILink[];
+  readonly link?: ILink[];
+  readonly downloadFile?: IAsset;
 }
 
 const CtaPopOutSection = ({ blok }: { blok: ICtaPopOutSection }) => {
-  const { title, text, image, link } = blok;
+  const { title, text, image, downloadFile } = blok;
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  const downloadLink = { url: { url: downloadFile?.filename }, title: '' };
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+
+  const springScrollY = useSpring(scrollYProgress, {
+    bounce: 0.5,
+    mass: 0.25,
+  });
+
+  const translateY = useTransform(springScrollY, [0, 1], ['-150px', '150px']);
 
   return (
     <section
-      className="w-full grid-container component-padding"
+      className="w-full grid-container component-padding relative"
       {...storyblokEditable(blok)}
     >
-      <div className="xl:col-start-4 xl:col-span-6 bg-black text-white p-20 rounded-2xl relative">
-        <div className="flex flex-col justify-start items-start gap-24 w-4/5">
-          <h1>{title}</h1>
+      <div
+        ref={ref}
+        className="xl:col-start-2 xl:col-span-6 bg-black text-white p-20 rounded-3xl relative z-10 shadow-bold border-yellow border-2"
+      >
+        <div className="flex flex-col justify-start items-start gap-20 whitespace-pre-line">
+          <h3>{title}</h3>
           {text}
-          <AnimateInOnScroll
-            className="absolute top-0 -right-[200px] h-[120%] translate-x-1/3"
-            direction={DirectionEnum.Down}
-          >
-            <SbImage
-              className="w-full h-full"
-              src={image.filename}
-              alt={image.alt}
-            />
-          </AnimateInOnScroll>
-          <Button style_={ButtonStyleEnum.Square} link={link[0]} />
+          <Button link={downloadLink} download style_={ButtonStyleEnum.Outline}>
+            Download Resume
+          </Button>
         </div>
       </div>
+      <motion.div
+        className="absolute z-20 top-0 right-10 h-[80%] drop-shadow-lg"
+        style={{ translateY }}
+      >
+        <SbImage
+          className="w-full h-full drop-shadow-md"
+          src={image.filename}
+          alt={image.alt}
+        />
+      </motion.div>
     </section>
   );
 };

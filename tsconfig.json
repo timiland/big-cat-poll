@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,7 +20,7 @@
       "@pages/*": ["pages/*"],
       "@models/*": ["models/*"],
       "@atoms/*": ["components/atoms/*"],
-      "@molecules/*": ["components/molecules/*"],
+      "@molecules/*": ["components/3D/*"],
       "@organisms/*": ["components/organisms/*"],
       "@templates/*": ["components/templates/*"],
       "@services/*": ["services/*"],

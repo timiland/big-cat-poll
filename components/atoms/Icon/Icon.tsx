@@ -7,7 +7,7 @@ import iconSet from './selection.json';
 const Icon: FC<IIcon> = ({
   className = '',
   color = '',
-  colorClassName = 'text-black-100',
+  colorClassName = '',
   name = 'check',
   size = '1.5rem',
 }: IIcon) => {
